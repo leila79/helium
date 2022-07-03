@@ -30,7 +30,7 @@ async function changePassword(req, res) {
 }
 
 async function checkEmail(req, res) {
-  console.log(req.data);
+  // console.log(req.data);
   const email = req.data.email;
 
   try {
@@ -117,8 +117,15 @@ async function getUserFollowers(req, res) {
 
 async function register(req, res) {
   console.log(req.data);
-  const { username, password, first_name, last_name, phone_number, bio } =
-    req.data;
+  const {
+    username,
+    password,
+    first_name,
+    last_name,
+    phone_number,
+    bio,
+    email,
+  } = req.data;
 
   try {
     let user_id = await query(`SELECT MAX(user_id) FROM users`);
@@ -134,10 +141,10 @@ async function register(req, res) {
     } else {
       console.log(password);
       const passHash = hashPwd(password);
-      await query(`INSERT INTO users(user_id,first_name,last_name,username,password,phone_number,bio)
+      await query(`INSERT INTO users(user_id,first_name,last_name,username,password,phone_number,bio,email)
                   VALUES(${
                     user_id + 1
-                  },'${first_name}','${last_name}','${username}','${passHash}','${phone_number}','${bio}')`);
+                  },'${first_name}','${last_name}','${username}','${passHash}','${phone_number}','${bio}','${email}')`);
       sendResponse(res, statusCodes.SUCCESS, messages.SUCCESS);
     }
   } catch (err) {
