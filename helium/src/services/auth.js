@@ -16,7 +16,8 @@ export function register(
   _password,
   _first_name,
   _last_name,
-  _phone_number
+  _phone_number,
+  _email
 ) {
   return axios.post(`register/`, {
     username: _username,
@@ -24,18 +25,18 @@ export function register(
     first_name: _first_name,
     last_name: _last_name,
     phone_number: _phone_number,
+    email: _email,
   });
 }
 
 export function checkEmail(_email) {
-  return axios.post(`checkEmail`, {
+  return axios.post(`checkemail`, {
     email: _email,
   });
 }
 
-export function changePassword(_email, _password) {
+export function changepass(_email) {
   return axios.post(`changePassword`, {
-    email: _email,
     password: _password,
   });
 }

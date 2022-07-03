@@ -182,8 +182,9 @@ export default {
       ("username: " + this.user.userName + " " + "password: " + this.user.password);
       ("firstname: " + this.user.firstName + " " + "lastname: " + this.user.lastName);
       ("phonenumber: " + this.user.phoneNumber);
+      ("email: " + this.user.email);
 
-      register(this.user.userName, this.user.password, this.user.firstName, this.user.lastName, this.user.phoneNumber.toString())
+      register(this.user.userName, this.user.password, this.user.firstName, this.user.lastName, this.user.phoneNumber.toString(), this.user.email)
         .then(
           (response) => {
             ("response", response.data);

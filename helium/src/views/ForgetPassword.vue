@@ -5,6 +5,7 @@
             <h3>فراموشی رمز عبور</h3>
             <span v-if="!emailSubmited">لطفا ایمیل خود را وارد کنید</span>
             <span v-if="emailSubmited">رمز عبور جدید خود را وارد کنید</span>
+            <small class="error" v-if="hasError">{{ errorText }} </small>
         </div>
         <div v-if="!emailSubmited" class="inputs">
             <Form :validation-schema="simpleSchemaemail" class="form-validation" @submit="submitEmail">
@@ -94,7 +95,7 @@ export default {
                 password: "",
             },
             submitted: "",
-            errorText: "لطفا همه فیلدها را تکمیل کنید",
+            errorText: "ایمیل وارد شده اشتباه است",
             hasError: false,
             emailSubmited: false,
             simpleSchemapass,
@@ -109,7 +110,9 @@ export default {
                     if (response.data.statuscode === 200) {
                         this.emailSubmited = true
                     } else {
-                        alert("دوباره تلاش کنید")
+                        // console.log(response.data.statuscode)
+                        // alert(" ایمیل وارد شده درست نمی باشد ")
+                        this.hasError = true;
                     }
                 },
                 (error) => {
