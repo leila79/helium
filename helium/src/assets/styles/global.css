@@ -1,0 +1,71 @@
+/*colors*/
+:root {
+    --dark-slate-blue: #264e64;
+    --white: #fafafa;
+    --tealish: #30bfb7;
+    --dark-grey-blue: #28394f;
+    --pale-grey: #eef2f3;
+    --water-blue: #139eca;
+    --warm-gray: #707070;
+}
+
+/*font families*/ 
+@font-face {
+    font-family: 'bahij-helvetica-bold';
+    src: url(./../fonts/bahij/bahij_helvetica_neue_bold_by_bahijvirtualacademy_dammcmt.ttf);
+}
+@font-face {
+    font-family: 'bahij-helvetica-light';
+    src: url(./../fonts/bahij/bahij_helvetica_neue_light_by_bahijvirtualacademy_dammcxa.ttf);
+}
+@font-face {
+    font-family: 'bahij-helvetica-roman';
+    src: url(./../fonts/bahij/bahij_helvetica_neue_roman_by_bahijvirtualacademy_dammd50.ttf);
+}
+@font-face {
+    font-family: 'bahij-thesansarabic-black';
+    src: url(./../fonts/bahij/bahij_thesansarabic_black_by_bahijvirtualacademy_damtach.ttf);
+}
+@font-face {
+    font-family: 'bahij-thesansarabic-bold';
+    src: url(./../fonts/bahij/bahij_thesansarabic_bold_by_bahijvirtualacademy_damtacp.ttf);
+}
+@font-face {
+    font-family: 'bahij-thesansarabic-extrabold';
+    src: url(./../fonts/bahij/bahij_thesansarabic_extrabold_by_bahijvirtualacademy_damtad1.ttf);
+}
+@font-face {
+    font-family: 'bahij-thesansarabic-extralight';
+    src: url(./../fonts/bahij/bahij_thesansarabic_extralight_by_bahijvirtualacademy_damtadg.ttf);
+}
+@font-face {
+    font-family: 'bahij-thesansarabic-light';
+    src: url(./../fonts/bahij/bahij_thesansarabic_light_by_bahijvirtualacademy_damtadu.ttf);
+}
+@font-face {
+    font-family: 'bahij-thesansarabic-plain';
+    src: url(./../fonts/bahij/bahij_thesansarabic_plain_by_bahijvirtualacademy_damtae7.ttf);
+}
+@font-face {
+    font-family: 'bahij-thesansarabic-semibold';
+    src: url(./../fonts/bahij/bahij_thesansarabic_semibold_by_bahijvirtualacademy_damtaey.ttf);
+}
+@font-face {
+    font-family: 'bahij-thesansarabic-semilight';
+    src: url(./../fonts/bahij/bahij_thesansarabic_semilight_by_bahijvirtualacademy_damtafg.ttf);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'bahij-helvetica-roman';
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    direction: rtl;
+    background-color: var(--white);
+    height: 100%;
+    padding-bottom: 20vh;
+}

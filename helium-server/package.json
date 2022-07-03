@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@igit.partdp.ir:college/developer3/undefined/server/helium-server-side.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "crypto": "^1.0.1",
+    "encoding": "^0.1.13",
+    "jsonwebtoken": "^8.5.1",
+    "maya-data-parser": "^1.0.1",
+    "maya-router": "^1.1.4",
+    "maya-server": "^1.0.0",
+    "node-fetch": "^3.0.0",
+    "pg": "^8.7.1",
+    "qs": "^6.10.1"
+  }
+}
