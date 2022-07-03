@@ -4,7 +4,18 @@ const dataParser = require('maya-data-parser');
 const { userIdSetter, tokenDecoder, followingIdSetter } = require('./utils/extract.js');
 
 module.exports = {
-  
+  '/checkemail': {
+    POST: {
+      function: userCtrl.checkEmail,
+      middlewares: [dataParser, userIdSetter]
+    },
+  },
+  '/changepass': {
+    PUT: {
+      function: userCtrl.changePassword,
+      middlewares: [dataParser, userIdSetter]
+    },
+  },
   '/user': {
     GET: {
       function: userCtrl.getProfileInfo,

@@ -3,6 +3,53 @@ const { query, sendResponse } = require('../../../utils.js')
 const { statusCodes, messages } = require('../../../utils')
 const { hashPwd } = require('../../authentication/utils/hash.js')
 
+async function changePassword(req, res) {
+  const user_id = req.user_id;
+  try {
+    if (userId) {
+      if (req.data.newpassword) {
+        const passHash = hashPwd(req.data.newpassword);
+        await query(
+          `UPDATE users SET password='${passHash}' WHERE user_id=${userId}`
+        );
+        userId = undefined
+        sendResponse(res, statusCodes.SUCCESS, messages.SUCCESS);
+      } else {
+        sendResponse(res, statusCodes.FAILED, messages.FAILED, {
+          statuscode: 400,
+          messages: 'پسورد را وارد کنید'
+        })
+      }
+    } else {
+      sendResponse(res, statusCodes.FAILED, messages.FAILED)
+    }
+  } catch (err) {
+    console.log("Database ", err);
+    sendResponse(res, statusCodes.FAILED, messages.FAILED);
+  }
+}
+
+async function checkEmail(req, res) {
+  console.log(req.data);
+  const email = req.data.email
+
+  try {
+    const users = await query(`SELECT COUNT(*) FROM users WHERE email='${email}'`)
+    // console.log("users:---> ", users);
+    if (users.rows[0].count > 0) {
+      userId = (await query(`SELECT user_id FROM users WHERE email='${email}' ORDER BY user_id ASC LIMIT 1`)).rows[0].user_id
+      sendResponse(res, statusCodes.SUCCESS, messages.SUCCESS)
+    } else {
+      sendResponse(res, statusCodes.FAILED, messages.FAILED, {
+        statuscode: 404,
+        messages: 'کاربر وجود ندارد!'
+      })
+    }
+  } catch (err) {
+    console.log('Database ', err)
+    sendResponse(res, statusCodes.FAILED, messages.FAILED)
+  }
+}
 
 async function getProfileInfo(req, res){
     const user_id = req.user_id
@@ -124,4 +171,6 @@ module.exports = {
     getUserFollowers,
     register,
     editProfile,
+    changePassword,
+    checkEmail
 }
