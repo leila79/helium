@@ -109,7 +109,6 @@ async function register(req, res){
       first_name,
       last_name,
       phone_number,
-      bio,
       email
   } = req.data
 
@@ -122,8 +121,8 @@ async function register(req, res){
     }else{
       console.log(password);
       const passHash = hashPwd(password)
-      await query(`INSERT INTO users(user_id,first_name,last_name,username,password,phone_number,bio,email)
-                  VALUES(${user_id+1},'${first_name}','${last_name}','${username}','${passHash}','${phone_number}','${bio}','${email}')`)
+      await query(`INSERT INTO users(user_id,first_name,last_name,username,password,phone_number,email)
+                  VALUES(${user_id+1},'${first_name}','${last_name}','${username}','${passHash}','${phone_number}','${email}')`)
       sendResponse(res, statusCodes.SUCCESS, messages.SUCCESS)
     }
     
