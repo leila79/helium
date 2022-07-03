@@ -7,13 +7,13 @@ module.exports = {
   '/checkemail': {
     POST: {
       function: userCtrl.checkEmail,
-      middlewares: [dataParser, userIdSetter]
+      middlewares: [dataParser]
     },
   },
   '/changepass': {
     PUT: {
       function: userCtrl.changePassword,
-      middlewares: [dataParser, userIdSetter]
+      middlewares: [dataParser]
     },
   },
   '/user': {
