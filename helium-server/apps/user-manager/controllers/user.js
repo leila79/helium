@@ -2,9 +2,9 @@ const User = require("../models/User");
 const { query, sendResponse } = require("../../../utils.js");
 const { statusCodes, messages } = require("../../../utils");
 const { hashPwd } = require("../../authentication/utils/hash.js");
+let userId;
 
 async function changePassword(req, res) {
-  // const user_id = req.user_id;
   try {
     // if (user_id) {
     console.log(req.data);
@@ -135,11 +135,10 @@ async function register(req, res) {
     } else {
       console.log(password);
       const passHash = hashPwd(password);
-      await query(`INSERT INTO users(user_id,first_name,last_name,username,password,phone_number,bio,email)
+      await query(`INSERT INTO users(user_id,first_name,last_name,username,password,phone_number,email)
                   VALUES(${
                     user_id + 1
-                  },'${first_name}','${last_name}','${username}','${passHash}','${phone_number}','${bio}','${email}')`);
-      console.log("done");
+                  },'${first_name}','${last_name}','${username}','${passHash}','${phone_number}','${email}')`);
       sendResponse(res, statusCodes.SUCCESS, messages.SUCCESS);
     }
   } catch (err) {
