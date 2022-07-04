@@ -6,24 +6,24 @@ let userId;
 
 async function changePassword(req, res) {
   try {
-    // if (user_id) {
-    console.log(req.data);
-    if (req.data.newpassword) {
-      const passHash = hashPwd(req.data.newpassword);
-      await query(
-        `UPDATE users SET password='${passHash}' WHERE user_id=${userId}`
-      );
-      userId = undefined;
-      sendResponse(res, statusCodes.SUCCESS, messages.SUCCESS);
+    if (userId) {
+      // console.log(req.data);
+      if (req.data.newpassword) {
+        const passHash = hashPwd(req.data.newpassword);
+        await query(
+          `UPDATE users SET password='${passHash}' WHERE user_id=${userId}`
+        );
+        userId = undefined;
+        sendResponse(res, statusCodes.SUCCESS, messages.SUCCESS);
+      } else {
+        sendResponse(res, statusCodes.FAILED, messages.FAILED, {
+          statuscode: 400,
+          messages: "پسورد را وارد کنید",
+        });
+      }
     } else {
-      sendResponse(res, statusCodes.FAILED, messages.FAILED, {
-        statuscode: 400,
-        messages: "پسورد را وارد کنید",
-      });
+      sendResponse(res, statusCodes.FAILED, messages.FAILED);
     }
-    // } else {
-    //   sendResponse(res, statusCodes.FAILED, messages.FAILED);
-    // }
   } catch (err) {
     console.log("Database ", err);
     sendResponse(res, statusCodes.FAILED, messages.FAILED);
