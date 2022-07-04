@@ -43,7 +43,7 @@
 
 <script>
 
-import { checkEmail, changePassword } from "../services/auth.js";
+import { checkEmail, changepass } from "../services/auth.js";
 import { Field, ErrorMessage, Form } from "vee-validate";
 export default {
     name: "ForgetPassword_component",
@@ -121,12 +121,13 @@ export default {
             )
         },
         changePass() {
-            changePassword(this.user.email, this.user.password).then(
+            changepass(this.user.password).then(
                 (response) => {
                     ("response", response.data);
                     if (response.data.statuscode === 200) {
                         this.$router.push('/login');
                     } else {
+                        console.log(response.data.statuscode)
                         alert("دوباره تلاش کنید")
                     }
                 },

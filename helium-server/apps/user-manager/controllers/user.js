@@ -4,25 +4,26 @@ const { statusCodes, messages } = require("../../../utils");
 const { hashPwd } = require("../../authentication/utils/hash.js");
 
 async function changePassword(req, res) {
-  const user_id = req.user_id;
+  // const user_id = req.user_id;
   try {
-    if (user_id) {
-      if (req.data.newpassword) {
-        const passHash = hashPwd(req.data.newpassword);
-        await query(
-          `UPDATE users SET password='${passHash}' WHERE user_id=${userId}`
-        );
-        userId = undefined;
-        sendResponse(res, statusCodes.SUCCESS, messages.SUCCESS);
-      } else {
-        sendResponse(res, statusCodes.FAILED, messages.FAILED, {
-          statuscode: 400,
-          messages: "پسورد را وارد کنید",
-        });
-      }
+    // if (user_id) {
+    console.log(req.data);
+    if (req.data.newpassword) {
+      const passHash = hashPwd(req.data.newpassword);
+      await query(
+        `UPDATE users SET password='${passHash}' WHERE user_id=${userId}`
+      );
+      userId = undefined;
+      sendResponse(res, statusCodes.SUCCESS, messages.SUCCESS);
     } else {
-      sendResponse(res, statusCodes.FAILED, messages.FAILED);
+      sendResponse(res, statusCodes.FAILED, messages.FAILED, {
+        statuscode: 400,
+        messages: "پسورد را وارد کنید",
+      });
     }
+    // } else {
+    //   sendResponse(res, statusCodes.FAILED, messages.FAILED);
+    // }
   } catch (err) {
     console.log("Database ", err);
     sendResponse(res, statusCodes.FAILED, messages.FAILED);
@@ -117,15 +118,8 @@ async function getUserFollowers(req, res) {
 
 async function register(req, res) {
   console.log(req.data);
-  const {
-    username,
-    password,
-    first_name,
-    last_name,
-    phone_number,
-    bio,
-    email,
-  } = req.data;
+  const { username, password, first_name, last_name, phone_number, email } =
+    req.data;
 
   try {
     let user_id = await query(`SELECT MAX(user_id) FROM users`);
@@ -145,6 +139,7 @@ async function register(req, res) {
                   VALUES(${
                     user_id + 1
                   },'${first_name}','${last_name}','${username}','${passHash}','${phone_number}','${bio}','${email}')`);
+      console.log("done");
       sendResponse(res, statusCodes.SUCCESS, messages.SUCCESS);
     }
   } catch (err) {

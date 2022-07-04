@@ -19,7 +19,7 @@ export function register(
   _phone_number,
   _email
 ) {
-  return axios.post(`register/`, {
+  return axios.post(`register`, {
     username: _username,
     password: _password,
     first_name: _first_name,
@@ -35,8 +35,8 @@ export function checkEmail(_email) {
   });
 }
 
-export function changepass(_email) {
-  return axios.post(`changePassword`, {
-    password: _password,
+export function changepass(_password) {
+  return axios.put(`changepass`, {
+    newpassword: _password,
   });
 }
