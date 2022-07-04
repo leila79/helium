@@ -236,17 +236,19 @@ async function updatePostLikes(req, res) {
 async function getUserPosts(req, res) {
   console.log("in here");
   const user_id = req.user_id;
+  console.log(user_id);
   let user_posts = [];
 
   try {
     const posts =
       await query(`SELECT distinct posts.*, COUNT(likes.*) as like_number
                                 FROM posts 
-                                INNER JOIN likes
+                                LEFT JOIN likes
                                 ON posts.id=likes.post_id
                                 WHERE posts.user_id=${user_id}
                                 GROUP BY posts.id`);
 
+    console.log(posts);
     Array.prototype.push.apply(user_posts, posts.rows);
     if (req.main_user_id) {
       var bookmarks = await query(
