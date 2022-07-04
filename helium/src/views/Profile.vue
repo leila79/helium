@@ -28,7 +28,7 @@
 
           <div v-if="currentTab == 'tab2'">
 
-            <div v-if="noPostsAlert" class="no-post-alert">تا کنون مقاله ای منتشر نشده است.</div>
+            <div v-if="checkPost()" class="no-post-alert">تا کنون مقاله ای منتشر نشده است.</div>
             <div v-else>
               <div v-if="!hasQuery">
                 <div v-for="(item, index) in postsInfo" :key="index">
@@ -113,11 +113,11 @@ export default {
   },
 
   mounted() {
-
+    // console.log(this.$route.query.userId);
     if (this.$route.query.userId) {
-
+      // console.log("salam2");
       this.isUserProfile = false
-      this.isLoading = true
+      // this.isLoading = true
       this.$store.dispatch("getProfileDetails", this.$route.query.userId)
       this.$store.dispatch("getProfilFollower", this.$route.query.userId)
       this.$store.dispatch("getProfilePosts", this.$route.query.userId)
@@ -126,17 +126,23 @@ export default {
 
     }
     else {
-
+      // console.log(this.isLogin);
       this.isUserProfile = true
       this.hasQuery = false
+      this.isLoading = false
+      // console.log(Object.keys(this.$store.state.aboutInfo).length)
       if (this.isLogin && !Object.keys(this.$store.state.aboutInfo).length) {
-        console.log("salam");
+
         this.$store.dispatch("getProfileDetails")
         console.log(this.aboutInfo);
         this.$store.dispatch("getProfilePosts")
         this.$store.dispatch("getProfilFollower")
+        this.isLoading = false
       }
+      this.isLoading = false
+      this.hasQuery = false
     }
+    // console.log(this.isLoading)
   },
   computed: {
     ...mapState({
@@ -153,13 +159,19 @@ export default {
       columns2: 'columns2',
       postsQuery: 'postsQuery',
       isLoading: 'isLoading'
-    })
+    }),
   },
 
   methods: {
     handleClick(newTab) {
       this.currentTab = newTab;
     },
+    checkPost() {
+      console.log(this.noPostsAlert)
+      this.$store.dispatch("getProfilePosts", this.aboutInfo.userId)
+      console.log(this.noPostsAlert)
+      return this.noPostsAlert
+    }
   },
 
 };

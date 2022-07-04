@@ -73,7 +73,8 @@ export default {
         },
         publisherPhoto: {
             required: true,
-            type: String
+            type: String,
+            default: require("@/assets/img/profiles/defualt-profile.svg"),
         },
         mainTitle: {
             required: true,

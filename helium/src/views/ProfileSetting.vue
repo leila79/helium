@@ -17,7 +17,7 @@
       <separator v-bind="followersSeparator" />
       <follower-control />
       <separator v-bind="customazationSeparator" />
-      <customazation-control />
+      <!-- <customazation-control /> -->
     </div>
     <spinner_component v-else />
   </div>
@@ -31,7 +31,7 @@ import PersonalInfo from "../components/profile setting/PersonalInfo.vue";
 import DescriptionInfo from "../components/profile setting/DescriptionInfo.vue";
 import ContactInfo from "../components/profile setting/ContactInfo.vue";
 import FollowerControl from "../components/profile setting/FollowersControl.vue"
-import CustomazationControl from "../components/profile setting/CustomzationControl.vue"
+// import CustomazationControl from "../components/profile setting/CustomzationControl.vue"
 import isLogin from '../services/utils.js'
 import Alert from '../components/Alert.vue'
 
@@ -44,7 +44,7 @@ export default {
     DescriptionInfo,
     ContactInfo,
     FollowerControl,
-    CustomazationControl,
+    // CustomazationControl,
     Alert
   },
   mounted() {

@@ -24,6 +24,7 @@ export function createPost(
 }
 
 export function userPosts(cookies, user_id = -1) {
+  console.log(`id is : ${user_id}`);
   if (user_id < 0) {
     return axios.get(`user/posts`, {
       headers: {

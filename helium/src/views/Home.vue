@@ -44,11 +44,12 @@ export default {
   },
   mounted() {
 
-    if (this.isLogin && !Object.keys(this.$store.state.aboutInfo).length) {
+    if (this.isLogin) {
 
       this.$store.dispatch("getProfileDetails")
       this.$store.dispatch("getProfilePosts")
       this.$store.dispatch("getProfilFollower")
+      console.log("Done")
 
     }
   },

@@ -7,19 +7,14 @@
       <button v-if="!login && !loginPage" class="register-btn" @click="goToLogin()"> ورود / ثبت نام </button>
       <div class="header-icons" v-else-if="login && !loginPage">
         <div class="search-icon">
-            <search-box v-show="search" /> 
-            <img :src="searchIconUrl" alt="search-icon"  @click="search = !search"/>
+          <search-box v-show="search" />
+          <img :src="searchIconUrl" alt="search-icon" @click="search = !search" />
         </div>
         <img :src="saveIconUrl" alt="save-icon" @click="goToBookmark()" />
         <img :src="notificationIconUrl" alt="notification-icon" />
-        <div class="hoverImg"  @mouseover="hover = true" @mouseleave="hover = false">
-          <img
-            :src="userProfilePhoto"
-            alt="profile-img"
-            class="profile-img"
-            @click="goToProfile()"
-          />
-          <menu-hover  v-show="hover"/>
+        <div class="hoverImg" @mouseover="hover = true" @mouseleave="hover = false">
+          <img :src="userProfilePhoto" alt="profile-img" class="profile-img" @click="goToProfile()" />
+          <menu-hover v-show="hover" />
         </div>
       </div>
     </div>
@@ -34,16 +29,16 @@ import { mapState } from 'vuex'
 
 export default {
   name: "AppHeader",
-  components:{
-      MenuHover,
-      SearchBox
+  components: {
+    MenuHover,
+    SearchBox
   },
   props: {
     headerType: {
       required: false,
       type: String,
     },
-    loginPage:{
+    loginPage: {
       required: false,
       type: Boolean,
       default: false,
@@ -61,9 +56,11 @@ export default {
       search: false,
     };
   },
-  computed:{ ...mapState({
-    aboutInfo: 'aboutInfo',
-  })},
+  computed: {
+    ...mapState({
+      aboutInfo: 'aboutInfo',
+    })
+  },
   methods: {
     goToProfile() {
       this.$router.push("/profile");
@@ -74,22 +71,23 @@ export default {
     goToLogin() {
       this.$router.push("/login");
     },
-    goToHome(){
+    goToHome() {
       this.$router.push("/");
     },
-    checkLogin(){
+    checkLogin() {
       this.login = isLogin(this.$cookies)
-      if(this.login === true) this.profileInfo()
+      if (this.login === true) this.profileInfo()
     },
-    profileInfo(){
+    profileInfo() {
+
       (localStorage.getItem('userpic'));
-      if(localStorage.getItem('userpic')){
+      if (localStorage.getItem('userpic')) {
         this.userProfilePhoto = localStorage.getItem('userpic')
-     }
+      }
     }
   },
-  created(){
-    this.checkLogin()  
+  created() {
+    this.checkLogin()
   }
 };
 </script>
@@ -114,12 +112,12 @@ export default {
   cursor: pointer;
 }
 
-.search-icon{
- 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center ;
+.search-icon {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 /*Login-Register Button*/
@@ -140,12 +138,14 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+
 .header-icons img {
   margin: 0 0.7vw;
   width: 23px;
   height: 23px;
   cursor: pointer;
 }
+
 .header-icons .profile-img {
   border-radius: 50%;
   width: 40px;
@@ -153,17 +153,21 @@ export default {
   object-fit: cover;
   vertical-align: middle;
 }
-button{
+
+button {
   cursor: pointer;
 }
+
 @media (max-width: 1200px) {
   .appHeader {
     padding: 2vh 10vw;
     margin: 0 0 12vh;
   }
+
   header .logo {
     width: 11vw;
   }
+
   .register-btn {
     height: 33px;
     width: 13vw;
@@ -171,6 +175,7 @@ button{
     border-radius: 9px;
   }
 }
+
 @media (max-width: 992px) {
   header {
     margin: 0 0 8vh;
@@ -179,6 +184,7 @@ button{
   header .logo {
     width: 12.3vw;
   }
+
   .register-btn {
     height: 30px;
     width: 15vw;
@@ -186,6 +192,7 @@ button{
     border-radius: 8px;
   }
 }
+
 @media (max-width: 768px) {
   header {
     margin: 0 0 7vw;
@@ -196,6 +203,7 @@ button{
   header .logo {
     width: 14.5vw;
   }
+
   .register-btn {
     height: 26px;
     width: 16vw;
@@ -203,15 +211,18 @@ button{
     border-radius: 7px;
   }
 }
+
 @media (max-width: 600px) {
   header {
     margin: 0 0 8vw;
     padding: 1vh 9vw;
     height: 50px;
   }
+
   header .logo {
     width: 18vw;
   }
+
   .register-btn {
     height: 25px;
     width: 21vw;
@@ -219,13 +230,16 @@ button{
     border-radius: 6px;
   }
 }
+
 @media (max-width: 400px) {
   header {
     margin: 0 0 7vw;
   }
+
   header .logo {
     width: 23vw;
   }
+
   .register-btn {
     height: 25px;
     width: 24vw;
