@@ -2,9 +2,9 @@ const User = require('../models/User')
 const { query, sendResponse } = require('../../../utils.js')
 const { statusCodes, messages } = require('../../../utils')
 const { hashPwd } = require('../../authentication/utils/hash.js')
+let userId
 
 async function changePassword(req, res) {
-  const user_id = req.user_id;
   try {
     if (userId) {
       if (req.data.newpassword) {
