@@ -15,7 +15,7 @@ const serverConfig = {
 const dbConfig = {
   user: "postgres",
   database: "helium1",
-  password: "postgres",
+  password: "123456",
   host: "127.0.0.1",
   port: 5432,
   max: 10,

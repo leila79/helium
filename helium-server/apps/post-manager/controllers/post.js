@@ -242,7 +242,7 @@ async function getUserPosts(req, res) {
     const posts =
       await query(`SELECT distinct posts.*, COUNT(likes.*) as like_number
                                 FROM posts 
-                                INNER JOIN likes
+                                LEFT JOIN likes
                                 ON posts.id=likes.post_id
                                 WHERE posts.user_id=${user_id}
                                 GROUP BY posts.id`);
