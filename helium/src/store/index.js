@@ -38,6 +38,7 @@ const store = createStore({
       }
       localStorage.setItem("firstname", state.aboutInfo.firstName);
       localStorage.setItem("lastname", state.aboutInfo.lastName);
+      localStorage.setItem("email", state.aboutInfo.email);
       state.headerInfo = headerInfoMaker(res);
       console.log("sss", state.aboutInfo);
     },

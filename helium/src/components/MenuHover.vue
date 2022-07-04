@@ -3,7 +3,7 @@
     <div class="menu">
       <div class="name-and-link" @click="goToProfile()">
         <span> {{ fullName }}</span>
-        <span>leila.shekofteh@gmail.com</span>
+        <span>{{ email }}</span>
       </div>
       <hr />
       <div class="actions" @click="goToAddNewPost()">
@@ -34,11 +34,13 @@ export default {
       addNewPostIconUrl: require("@/assets/icons/document-download.svg"),
       profileSettingIconUrl: require("@/assets/icons/candle-2.svg"),
       logoutIconUrl: require("@/assets/icons/logout.svg"),
-      fullName: ""
+      fullName: "",
+      email: ""
     };
   },
   mounted() {
     this.fullName = localStorage.getItem('firstname') + " " + localStorage.getItem('lastname')
+    this.email = localStorage.getItem('email')
   },
   methods: {
     goToAddNewPost() {
@@ -106,7 +108,7 @@ export default {
 
   position: fixed;
   width: 50%;
-  height: 100%;
+  height: 750px;
 
 }
 
